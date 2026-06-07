@@ -9,6 +9,10 @@
     "128": "icons/icon128.png"
   },
   "permissions": ["storage"],
+  "action": {
+    "default_title": "oneshot-zap 設定",
+    "default_popup": "options.html"
+  },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": false
