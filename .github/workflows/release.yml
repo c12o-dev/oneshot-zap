@@ -1,0 +1,37 @@
+name: Release
+
+# v* タグを push すると dist/ をビルドして zip し、GitHub Release に添付する。
+#   git tag v0.1.0 && git push --tags
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write # Release 作成に必要
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm run dist # icons + typecheck + build → dist/
+
+      # dist/ の中身だけを zip(dist/ 自体は含めず、manifest.json がルートに来るようにする)
+      - name: Package
+        run: cd dist && zip -r "../oneshot-zap-${GITHUB_REF_NAME}.zip" .
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: oneshot-zap-${{ github.ref_name }}.zip
+          generate_release_notes: true
