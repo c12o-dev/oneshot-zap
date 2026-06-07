@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>oneshot-zap 設定</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+        min-width: 320px;
+        background: #16181c;
+        color: #e7e9ea;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans JP", sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      h1 {
+        font-size: 16px;
+        margin: 0 0 16px;
+      }
+      label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+      }
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        accent-color: #f4212e;
+        cursor: pointer;
+      }
+      .hint {
+        margin: 8px 0 0 28px;
+        color: #71767b;
+        font-size: 12px;
+      }
+      #status {
+        margin: 16px 0 0;
+        height: 18px;
+        color: #00ba7c;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>⚡ oneshot-zap 設定</h1>
+    <label>
+      <input type="checkbox" id="confirmBeforeZap" />
+      <span>実行前に確認ダイアログを表示する</span>
+    </label>
+    <p class="hint">
+      OFF にすると 1 クリックで即「スパム報告 → ブロック」を実行します（取り消し不可）。
+    </p>
+    <p id="status"></p>
+    <script src="options.js"></script>
+  </body>
+</html>
